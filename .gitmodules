@@ -1,0 +1,15 @@
+[submodule "cosmic-lib"]
+	path = cosmic-lib
+	url = https://github.com/MisterTicot/cosmic-lib
+[submodule "scrypt-async-js"]
+	path = scrypt-async-js
+	url = https://github.com/dchest/scrypt-async-js
+[submodule "tweetnacl-js"]
+	path = tweetnacl-js
+	url = https://github.com/dchest/tweetnacl-js
+[submodule "tweetnacl-util-js"]
+	path = tweetnacl-util-js
+	url = https://github.com/dchest/tweetnacl-util-js
+[submodule "bower-js-stellar-sdk"]
+	path = bower-js-stellar-sdk
+	url = https://github.com/stellar/bower-js-stellar-sdk
