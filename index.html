@@ -1,0 +1,181 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Stellar Authenticator</title>
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="stylesheet" type="text/css" href="auth.css" />
+    <script src="bower-js-stellar-sdk/stellar-sdk.js"></script>
+    <script src="scrypt-async-js/scrypt-async.js"></script>
+    <script src="tweetnacl-util-js/nacl-util.js"></script>
+    <script>console.log(nacl.util)</script>
+	<script src="tweetnacl-js/nacl.js"></script>
+    <script src="cosmic-lib/cosmic-lib.js"></script>
+    <link rel="stylesheet" type="text/css" href="cosmic-lib/cosmic-lib.css">
+    <script src="auth.js"></script>
+</head>
+
+<body id="body" onload="UI.init()" />
+
+	<div id="shadow"></div>
+
+	<div id="sorry" class="page">
+		<h2>Please enable Javascript :)</h2>
+
+		<p>Stellar Authenticator is heavily based on Javascript. This is
+		because all the code run locally on your machine; As we don't store any
+		data nor interfer in any mean in your usage of this application besides
+		serving the code to you. There's several reason you may come to this
+		page without a proper Javascript support. If it's because your device
+		doesn't handle it, there's not much we can do about it.</p>
+
+		<p>Maybe you disabled Javascript because malware/security/anonymity
+		concerns. You should know that Stellar Authenticator is a free software
+		and the code we serve is fully available to be reviewed. If you have
+		the required skill you can easily check that we don't run any external
+		script here.</p>
+
+		<p>If you wish, it is possible to download this web application and to
+		run it from your computer, or even offline.</p>
+
+		<p>If for some reason you landed here but have a working Javascript
+		implementation, it may means that you're using a device that we don't
+		properly support. In this case, we'll be happy to learn about you and
+		to implement a better support for your use case.</p>
+
+		<p>Respecfully,</p>
+		<p>Stellar Authenticator Author</p>
+	</div>
+
+	<div id="settingPanel">
+		<h1 id="title">Stellar Authenticator</h1>
+		<header id="header" style="display:none">
+			<input id="menuButton" type="button" onclick="UI.showMenu()" value="☰"><select id="accounts" onChange="UI.selectAccount()"></select>
+			<input id="publicKey" type="text" onclick="node.copyContent(this)" readonly>
+		</header>
+		<form id="settings" style="display:none">
+			<div class="window">
+				<h3 onclick="UI.showSetting(accountInfo)">Account</h3>
+				<div id="accountInfo">
+					<input id="secretSeed" readonly />
+					<input id="switchSecret" type="button" value="Show secret seed" onclick="UI.showSecret()">
+					<hr />
+					<input type="button" id="removeAccount" value="Remove account" onclick="UI.removeAccount()">
+				</div>
+			</div>
+
+			<div class="window">
+				<h3 onclick="UI.showSetting(accountAdd)">Add account</h3>
+				<div id="accountAdd">
+					<input type="button" value="Import secret seed" onclick="UI.importSeed()">
+					<hr />
+					<input type="button" value="Create new account" onclick="UI.createNewAccount()">
+				</div>
+			</div>
+
+			<div class="window">
+				<h3 onclick="UI.showSetting(security)">Security</h3>
+				<div id="security">
+					<input id="passwordChange" type="button" value="Change password" onclick="passwordChange()" disabled>
+				</div>
+			</div>
+		</form>
+	</div>
+
+    <div id="main" class="page" style="display:none">
+		<div id="loadingAccount" class="loading">
+			<span>Loading account information</span>
+			<div class="loadingAnim"></div>
+		</div>
+
+		<div id="emptyAccount" style="display:none"><h2>Empty Account</h2>
+			<p>Your account is still empty. To begin to use it and sign
+			transactions, you need to fund it with at least 1.1 XLM (lumen). </p>
+		</div>
+
+		<div id="transaction">
+			<div id="openTransaction">
+				<h2>Open transaction</h2>
+				<p>You can open a transaction that you'd like to sign using its URL or its XDR.</p>
+			</div>
+			<div id="readTransaction" style="display:none">
+				<h2>Transaction</h2>
+				<div id="CL_transactionNode"></div>
+				<div id="CL_statusNode"></div>
+			</div>
+
+			<form id="forms"></form>
+			<form id="closeTransaction">
+				<hr>
+				<input type="submit" value="Close transaction" onclick="return UI.closeTransaction()">
+			</form>
+		</div>
+    </div>
+
+    <div id="welcome" class="page" style="display:none">
+		<h2>Welcome to Stellar Authenticator!</h2>
+
+		<p>Stellar Authenticator is a web application that securely store our
+		Stellar keys. It allows us to sign Stellar transaction, and that's it.
+		Keeping the focus on this sole task allow us to aim for a high level of
+		quality and security.</p>
+
+		<p>You should know that the program run entirely in your browser, and
+		all the datas are stored locally in its HTML5 (web/cache) local
+		storage. You'll be able to access your keys from this machine and from
+		this browser only. The only information sent away is the transactions
+		you sign, in order to have them validated by the network.</p>
+
+		<p>The code is under MIT free software licence. It is served by Github
+		and Cloudflare, with 2 factor authentication enabled so it's unlikely
+		anybody could hijack the service. The keys are encrypted using
+		state-of-the-art cryptography, namely xsalsa20-poly1305.</p>
+
+		<p>Please remember that this service is currently under heavy
+		development (alpha phase). We ask you to consider yourself as an early
+		tester and to report to us any problem you may encounter so we can fix
+		it. Please use the test network or little amounts. The code is solid
+		but early release may behave unexpectedely from time to time. We'll
+		improve the experience and add features with regularity during the
+		coming year.</p>
+
+		<div class="gotIt"><a id="gotItLink" onclick="UI.signIn()">➞ Got It!</a></div>
+	</div>
+
+	<div id="signIn" class="page" style="display:none">
+		<h2>Sign in</h2>
+		<p>It time to choose your password!</p>
+
+		<p>As we don't store any data about you and your keys, we won't be able
+		to recover your password if you happen to loose it. Things are
+		encrypted so well that nobody will be able to get your private keys
+		back. So here's the thing: pick a password you will remember for
+		sure!</p>
+
+		<p>The strongness of your password determine the efficiency of the
+		encryption. You are the only one knowing how much you want to store on
+		your accounts. If it's little amounts, you don't need a very strong
+		password. If you want it to be hard-solid, though, you can go for 12
+		characters with a bit of everything and no dictionnary word or a
+		complete human phrase.</p>
+
+		<p>However, because each one keeps its encrypted database at home
+		there's no central point of attack and this sole fact makes us pretty
+		safe.</p>
+
+		<p>Just a word about local storage: you should be carefull when
+		cleaning your browser cache. There's a post on stack overflow detailing
+		how will behave your own browser: <a
+		href="https://stackoverflow.com/a/37105645" target="_blank">open</a>.
+	</div>
+
+    <footer id="footer">
+		<a id="aboutLink" onclick="UI.about()" style="display:none">About Stellar Authentificator</a>
+		<div id="disclaimer" style="display:none">
+			<p>Stellar Authenticator is a free software copyrighted under MIT licence.</p>
+			<p>Permission is granted to freely use, read, change and share.</p>
+		</div>
+    </footer>
+
+</body>
+</html>
