@@ -32,7 +32,8 @@ body
 	top: 0;
 	width: 100%;
     background-color: powderblue;
-	box-shadow: 0.1em 0.1em 0.3em darkgrey;
+	-webkit-box-shadow: 0.1em 0.1em 0.3em darkgrey;
+	        box-shadow: 0.1em 0.1em 0.3em darkgrey;
     text-align: center;
 }
 
@@ -55,7 +56,8 @@ h1
 	max-width: 40em;
     background-color: white;
     margin: 3em auto 1em auto;
-    box-shadow: 0.1em 0.1em 0.3em darkgrey;
+    -webkit-box-shadow: 0.1em 0.1em 0.3em darkgrey;
+            box-shadow: 0.1em 0.1em 0.3em darkgrey;
     border: 0.1em solid lightgrey;
     border-radius: 0.1em;
     padding: 0.5em;
@@ -104,6 +106,9 @@ hr
     border: 0;
     height: 0.1em;
     margin-top: 0.5em;
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(lightgrey), to(rgba(0, 0, 0, 0)));
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), lightgrey, rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), lightgrey, rgba(0, 0, 0, 0));
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), lightgrey, rgba(0, 0, 0, 0));
 }
 
@@ -259,7 +264,8 @@ header input[type="text"] { width: 98%; }
 	padding: 0.2em;
 	font-size: 1.2em;
 	color: ghostwhite;
-	box-shadow: 0.1em 0.1em 0.1em dimgrey;
+	-webkit-box-shadow: 0.1em 0.1em 0.1em dimgrey;
+	        box-shadow: 0.1em 0.1em 0.1em dimgrey;
 }
 
 #settingPanel form h3:hover
@@ -284,6 +290,9 @@ header input[type="text"] { width: 98%; }
 {
     border: 0;
     height: 0.1em;
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(#6c9dc6), to(rgba(0, 0, 0, 0)));
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), #6c9dc6, rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), #6c9dc6, rgba(0, 0, 0, 0));
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #6c9dc6, rgba(0, 0, 0, 0));
 }
 
@@ -320,11 +329,13 @@ header input[type="text"] { width: 98%; }
     overflow: auto;
     bottom: 50%;
     left: 50%;
-    transform: translate(-50%, 50%);
+    -ms-transform: translate(-50%, 50%);
+        transform: translate(-50%, 50%);
     -webkit-transform: translate(-50%, 50%);
     border: 0.1em solid darkgrey;
     border-radius: 0.2em;
-	box-shadow: 0.1em 0.1em 0.3em darkslategrey;
+	-webkit-box-shadow: 0.1em 0.1em 0.3em darkslategrey;
+	        box-shadow: 0.1em 0.1em 0.3em darkslategrey;
     background-color: white;
     padding: 1em 0.5em 0 0.5em;
     text-align: center;
@@ -400,6 +411,6 @@ header input[type="text"] { width: 98%; }
 }
 
 @keyframes spin {
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
+	0% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
 }
