@@ -1,0 +1,13 @@
+Bugfixes:
+* Better CSS compatibility
+* Check old IE/Firefox compatibility
+
+Before beta release (end-march to mid-april):
+* Create & auto-fund testnet accounts
+* Add backups
+* Add password changing
+* Add a link to create accounts
+* Better history handling
+* Better session login/logout handling
+* (code) Have database as a class & re-write related code with better style.
+* (code) Rework node.create
