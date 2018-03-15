@@ -364,6 +364,7 @@ var UI = {
 		node.grab("welcome").style.display = "block"
 		node.grab("aboutLink").style.display = "none"
 		node.grab("gotItLink").onclick = UI.closeAbout
+		scroll(0,0)
 	},
 
 	closeAbout: function()
@@ -373,15 +374,18 @@ var UI = {
 		node.grab("main").style.display = "block"
 		node.grab("welcome").style.display = "none"
 		node.grab("aboutLink").style.display = "block"
+		scroll(0,0)
 	},
 
 	firstWelcome: function() {
 		node.grab("welcome").style.display = "block"
+		scroll(0,0)
 	},
 
 	signIn: function() {
 		node.grab("welcome").style.display = "none"
 		node.grab("signIn").style.display = "block"
+		scroll(0,0)
 
 		var form = new Form(node.grab("signIn"))
 		form.addSeparator()
@@ -432,6 +436,7 @@ var UI = {
 		node.grab("main").style.display = "block"
 		node.grab("disclaimer").style.display = "none"
 		node.grab("aboutLink").style.display = "block"
+		scroll(0,0)
 
 		UI.refreshHeader()
 
@@ -456,6 +461,7 @@ var UI = {
 		} else {
 			UI.makeOpeningForms()
 		}
+		scroll(0,0)
 	},
 
 	parseQuery: function(query){
@@ -632,6 +638,7 @@ var UI = {
 		node.grab("settingPanel").style.position = "fixed"
 		node.grab("main").style.display = "block"
 		node.grab("menuButton").onclick = UI.showMenu
+		scroll(0,0)
 	},
 
 	resetMenu: function() {
