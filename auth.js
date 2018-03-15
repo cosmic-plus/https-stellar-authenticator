@@ -620,13 +620,16 @@ var UI = {
 	showMenu: function() {
 		node.grab("settings").style.display = "block"
 		node.grab("settingPanel").style.minHeight = "100%"
+		node.grab("settingPanel").style.position = "absolute"
 		node.grab("main").style.display = "none"
 		node.grab("menuButton").onclick = UI.hideMenu
+		scroll(0,0)
 	},
 
 	hideMenu: function() {
 		node.grab("settings").style.display = "none"
 		node.grab("settingPanel").style.minHeight = null
+		node.grab("settingPanel").style.position = "fixed"
 		node.grab("main").style.display = "block"
 		node.grab("menuButton").onclick = UI.showMenu
 	},
