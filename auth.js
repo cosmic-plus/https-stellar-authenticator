@@ -836,13 +836,16 @@ var popup =
 		node.append(titleNode, title)
 		node.append(popupNode, titleNode)
 
+		var contentNode = node.create("div", "content")
+		node.append(popupNode, contentNode)
+
 		var messageNode = node.create("p", "message")
 		node.append(messageNode, message)
-		node.append(popupNode, messageNode)
+		node.append(contentNode, messageNode)
 
 		node.append(node.grab("body"), popupNode)
 		popup.show(popupNode, exitThunk || popup.destroy)
-		return popupNode
+		return contentNode
 	},
 
 	destroy: function()

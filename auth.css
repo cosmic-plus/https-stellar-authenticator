@@ -324,7 +324,7 @@ header input[type="text"] { width: 98%; }
     position: fixed;
     margin: 0 auto;
     max-height: 100%;
-    width: 90%;
+    width: 95%;
     max-width: 31em;
     overflow: auto;
     bottom: 50%;
@@ -337,25 +337,25 @@ header input[type="text"] { width: 98%; }
 	-webkit-box-shadow: 0.1em 0.1em 0.3em darkslategrey;
 	        box-shadow: 0.1em 0.1em 0.3em darkslategrey;
     background-color: white;
-    padding: 1em 0.5em 0 0.5em;
     text-align: center;
 }
 
 .popup .title
 {
 	display: block;
-	position: fixed;
-	top: 0;
-	left: 0;
 	width: 100%;
-	margin: 0;
-	padding: 0.3em 0 0.1em 0;
+	padding: 0.1em 0;
 	background: aliceblue;
 	border-bottom: 1px solid lightgrey;
 	font-size: 0.8em;
 	font-weight: bold;
 	text-transform: uppercase;
 	font-stretch: condensed;
+}
+
+.popup .content
+{
+    padding: 0 0.5em;
 }
 
 .error
