@@ -913,7 +913,16 @@ var Form = (function wrapper() {
 				firstInput.focus()
 				firstInput.select()
 			}
-			return form
+
+		// This strange hack allow loading animation to be displayed
+		addValidator(form, function(){
+			return new Promise(function(success) {
+				setTimeout(success, 20)
+			})
+		})
+
+
+		return form
 		}
 
 
@@ -965,7 +974,7 @@ var Form = (function wrapper() {
 
 	function validate(form, validators, anim) {
 		if(!anim && form.inputs.submit) {
-			var anim = node.create("span", "loading")
+			var anim = node.create("span", "loadingAnim")
 			anim.style.position = "fixed"
 			node.append(form.inputs.submit, anim)
 		}
