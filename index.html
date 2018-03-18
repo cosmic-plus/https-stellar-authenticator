@@ -84,13 +84,27 @@
 
     <div id="main" class="page" style="display:none">
 		<div id="loadingAccount" class="loading">
-			<span>Loading account information</span>
+			<span>Loading account information...</span>
 			<div class="loadingAnim"></div>
 		</div>
 
-		<div id="emptyAccount" style="display:none"><h2>Empty Account</h2>
-			<p>Your account is still empty. To begin to use it and sign
-			transactions, you need to fund it with at least 1.1 XLM (lumen). </p>
+		<div id="fundingAccount" class="loading" style="display:none">
+			<span>Funding testnet account...</span>
+			<span class="loadingAnim"></span>
+		</div>
+
+		<div id="emptyAccount" class="warning" style="display:none">
+			<h3>Empty Account</h3>
+			<span>Your account is still empty. To begin to use it and sign
+			transactions, you need to fund it with at least 1.1 XLM (lumen). </span>
+		</div>
+
+		<div id="accountFunded" class="done" style="display:none">
+			<span>Testnet account successfully funded by Stellar friendbot.</span>
+		</div>
+
+		<div id="accountNotFunded" class="error" style="display:none">
+			<span>For some unknow reason, testnet account couldn't be funded.</span>
 		</div>
 
 		<div id="transaction">

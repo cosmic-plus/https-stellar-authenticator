@@ -789,21 +789,46 @@ var UI = {
 
 	refreshPublicKey: function(accountName) {
 		node.grab("loadingAccount").style.display = "block"
+		node.grab("fundingAccount").style.display = "none"
 		node.grab("emptyAccount").style.display = "none"
+		node.grab("accountFunded").style.display = "none"
+		node.grab("accountNotFunded").style.display = "none"
 
 		var publicKey = database.publicKey(accounts.DB, accountName)
+		var network = accountNetwork(accountName)
 		node.grab("publicKey").value = publicKey
-		accountExist(publicKey, accountNetwork(accountName))
+		accountExist(publicKey, network)
 			.then(function(bool) {
 				node.grab("loadingAccount").style.display = "none"
 				if(bool) {
 				} else {
-					node.grab("emptyAccount").style.display = "block"
+					if(network == "test") {
+						UI.fundTestAccount(publicKey)
+					} else {
+						node.grab("emptyAccount").style.display = "block"
+					}
 				}
 			})
 
 		UI.handleQuery()
 	},
+
+	fundTestAccount: function(publicKey) {
+		node.grab("fundingAccount").style.display = "block"
+
+		var xhr = new XMLHttpRequest()
+		xhr.open("GET", "https://friendbot.stellar.org/?addr=" + publicKey, true)
+		xhr.send()
+		xhr.onloadend = function(){
+			node.grab("fundingAccount").style.display = "none"
+			if(xhr.readyState == 4 && xhr.status == 200) {
+				node.grab("accountFunded").style.display = "block"
+			} else {
+				node.grab("accountNotFunded").style.display = "block"
+				console.log(xhr.response)
+			}
+		}
+	}
 }
 
 var popup =

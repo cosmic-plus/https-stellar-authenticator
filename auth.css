@@ -245,13 +245,30 @@ a:hover
 
 /* Other IDs & classes */
 
-.loading
+.page .loading, .page .done
 {
 	margin: 0.5em;
 	border: 0.1em solid mediumseagreen;
 	border-radius: 0.3em;
 	background-color: lightgreen;
 	padding: 0.3em;
+}
+
+.page .warning
+{
+	margin: 0.5em;
+	border: 0.1em solid red;
+	border-radius: 0.3em;
+	padding: 0.3em;
+}
+
+.page .error
+{
+	margin: 0.5em;
+	border: 0.1em solid tomato;
+	border-radius: 0.3em;
+	padding: 0.3em;
+	background-color: salmon;
 }
 
 
@@ -398,7 +415,7 @@ header input[type="text"] { width: 98%; }
     padding: 0 0.5em;
 }
 
-.error
+.popup .error
 {
 	color: red;
 }
