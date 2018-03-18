@@ -34,7 +34,7 @@ function accountExist(publicKey, network) {
 }
 
 function accountNetwork(name) {
-	if(name.substr(0,7) == "(test) ") return "test"
+	if(name.substr(0,7) == "(test) " || name.substr(0,10) == "(testnet) ") return "test"
 	else return "public"
 }
 
@@ -389,7 +389,7 @@ var UI = {
 
 		var form = new Form(node.grab("signIn"))
 		form.addSeparator()
-			.addLabel("Please choose a password")
+			.addTitle("Please choose a password")
 			.putErrorNode()
 			.addPasswordBox("password1", "New password")
 			.addPasswordBox("password2", "New password confirmation")
@@ -525,7 +525,7 @@ var UI = {
 	makeUrlViewer: function(url) {
 		var form = new Form(node.grab("forms"))
 		form.addSeparator()
-			.addLabel("Cosmic Link / Transaction URL")
+			.addTitle("Cosmic Link / Transaction URL")
 			.addTextBox("url")
 
 		var urlBox = form.inputs.url
@@ -539,7 +539,7 @@ var UI = {
 	makeXdrViewer: function(xdr) {
 		var form = new Form(node.grab("forms"))
 		form.addSeparator()
-			.addLabel("Transaction XDR")
+			.addTitle("Transaction XDR")
 			.addTextArea("xdr", "", 3)
 
 		var xdrBox = form.inputs.xdr
@@ -592,7 +592,7 @@ var UI = {
 	makeUrlForm: function() {
 		var form = new Form(node.grab("forms"))
 		form.addSeparator()
-			.addLabel("Cosmic Link / Transaction URL")
+			.addTitle("Cosmic Link / Transaction URL")
 			.putErrorNode()
 			.addTextBox("url", "Copy here")
 			.addSubmit("Open")
@@ -607,7 +607,7 @@ var UI = {
 	makeXdrForm: function() {
 		var form = new Form(node.grab("forms"))
 		form.addSeparator()
-			.addLabel("Transaction XDR")
+			.addTitle("Transaction XDR")
 			.putErrorNode()
 			.addTextArea("xdr", "Copy here", 3)
 			.addSubmit("Open")
@@ -715,6 +715,7 @@ var UI = {
 
 		form.addTextBox("name", "Account name")
 			.addTextBox("seed", "Secret seed")
+			.addCheckBox("testnet", "On testnet", false)
 			.addPasswordConfirmation()
 			.select()
 			.addValidator(function(){
@@ -724,7 +725,10 @@ var UI = {
 			.addValidator(function() {
 				var name = form.inputs.name.value,
 					password = form.inputs.password.value,
-					seed = form.inputs.seed.value
+					seed = form.inputs.seed.value,
+					testnet = form.inputs.testnet.checked
+
+				if(testnet) name = "(testnet) " + name
 
 				return database.addAccount(accounts.DB, password, name, seed)
 					.then(function(){
@@ -741,6 +745,7 @@ var UI = {
 		var form = new Form(box)
 
 		form.addTextBox("name", "Account name")
+			.addCheckBox("testnet", "On testnet", false)
 			.addPasswordConfirmation()
 			.select()
 			.addValidator(function(){
@@ -748,7 +753,10 @@ var UI = {
 			})
 			.addValidator(function() {
 				var name = form.inputs.name.value,
-					password = form.inputs.password.value
+					password = form.inputs.password.value,
+					testnet = form.inputs.testnet.checked
+
+				if(testnet) name = "(testnet) " + name
 
 				return accounts.create(name, password)
 					.then(function() {
@@ -921,7 +929,6 @@ var Form = (function wrapper() {
 			})
 		})
 
-
 		return form
 		}
 
@@ -936,7 +943,8 @@ var Form = (function wrapper() {
 
 		form.addNode = function(tag, name) { addNode(form, tag, name); return form }
 		form.addSeparator = function() { addSeparator(form); return form }
-		form.addLabel = function(text) { addLabel(form, text); return form }
+		form.addTitle = function(text) { addTitle(form, text); return form }
+		form.addCheckBox = function(name, text, initialState) { addCheckBox(form, name, text, initialState); return form }
 		form.addTextArea = function(name, placeHolder, rows) { addTextArea(form, name, placeHolder, rows); return form }
 
 		/*** Custom ***/
@@ -952,7 +960,7 @@ var Form = (function wrapper() {
 
 
 	function addCancelConfirmButtons(form) {
-		addButton(form, "cancel", "✖ Cancel", popup.destroy)
+		addButton(form, "cancel", "✘ Cancel", popup.destroy)
 		addSubmit(form)
 	}
 
@@ -1020,8 +1028,8 @@ var Form = (function wrapper() {
 		return element
 	}
 
-	function addLabel(form, text) {
-		var element = addNode(form, "label")
+	function addTitle(form, text) {
+		var element = addNode(form, "h3")
 		element.textContent = text
 	}
 
@@ -1048,6 +1056,18 @@ var Form = (function wrapper() {
 		addNode(form, "button", "submit")
 		form.inputs.submit.type = "submit"
 		form.inputs.submit.textContent = text || "✔ Confirm"
+	}
+
+	function addCheckBox(form, name, text, initialState) {
+		var checkBox = addInput(form, name, "text")
+		checkBox.type = "checkbox"
+		checkBox.checked = initialState
+		checkBox.required = false
+		checkBox.id = "checkbox" + name
+		var labelNode = node.create("label")
+		labelNode.htmlFor = checkBox.id
+		node.append(labelNode, text)
+		node.append(form.node, labelNode)
 	}
 
 	function addTextBox(form, name, placeHolder) {

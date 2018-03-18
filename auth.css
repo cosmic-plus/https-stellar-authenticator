@@ -124,9 +124,10 @@ h2
 	text-align: center;
 }
 
-label
+.page h3
 {
 	display: block;
+	margin: 0;
 	font-size: 0.9em;
 	font-size: 0.8em;
 	font-weight: bold;
@@ -134,7 +135,8 @@ label
 	font-stretch: condensed;
 }
 
-input, textarea, select, button
+textarea, select, button,
+[type="text"], [type="password"], [type="button"], [type="submit"]
 {
 	display: inline-block;
     width: 100%;
@@ -149,6 +151,44 @@ input, textarea, select, button
 textarea, select
 {
 	border-style: solid;
+}
+
+[type="checkbox"]
+{
+	display: none;
+}
+
+[type="checkbox"] + label
+{
+	display: block;
+	border-radius: 0.2em;
+	color: darkgrey;
+	font-style: italic;
+}
+
+[type="checkbox"] + label::before
+{
+	content: "✘";
+	margin-right: 0.5em;
+}
+
+[type="checkbox"]:checked + label
+{
+	background-color: lightgreen;
+	color: black;
+	font-style: normal;
+}
+
+[type="checkbox"]:checked + label::before
+{
+	content: "✔";
+}
+
+[type="checkbox"] + label:hover
+{
+	background-color: mediumseagreen;
+	cursor: pointer;
+	color: black;
 }
 
 .gotIt
