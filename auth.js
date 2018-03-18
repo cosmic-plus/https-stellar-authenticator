@@ -401,11 +401,11 @@ var UI = {
 				database.create(password)
 					.then(function(DB){
 						accounts.DB = DB
-						return accounts.create("(test) New Account", password)
+						return accounts.create("(testnet) Demonstration Account", password)
 					})
 					.then(function(){
 						accounts.save()
-						accounts.select("(test) New Account")
+						accounts.select("(testnet) Demonstration Account")
 						node.grab("signIn").style.display = "none"
 						UI.open()
 					})
