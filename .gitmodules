@@ -13,3 +13,6 @@
 [submodule "bower-js-stellar-sdk"]
 	path = bower-js-stellar-sdk
 	url = https://github.com/stellar/bower-js-stellar-sdk
+[submodule "res"]
+	path = res
+	url = https://github.com/MisterTicot/stellar-authenticator-res
