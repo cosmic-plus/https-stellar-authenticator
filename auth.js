@@ -494,17 +494,23 @@ var UI = {
 		var account = accounts.current()
 		var network = accountNetwork(account)
 		var publicKey = database.publicKey(accounts.DB, account)
-		global.cosmicLink = new CosmicLink(xdr, network, publicKey)
+		global.cosmicLink = new CosmicLink(xdr, network)
 		global.xdr = xdr
 
-		global.cosmicLink.getUri().then(function(uri) {
-			var viewer = UI.makeUrlViewer(uri)
-		})
+		global.cosmicLink.getQuery().then(function(query) {
+			if(global.cosmicLink.user != publicKey) {
+				global.cosmicLink.user = publicKey
+				UI.parseQuery(query)
+			} else {
+				var viewer = UI.makeUrlViewer("https://cosmic.link/" + query)
+				global.query = query
 
-		accountExist(publicKey, network)
-			.then(function(bool) {
-				if(bool) UI.makeSigningInterface()
-			})
+				accountExist(publicKey, network)
+					.then(function(bool) {
+						if(bool) UI.makeSigningInterface()
+				})
+			}
+		})
 	},
 
 	makeSigningInterface: function(){
