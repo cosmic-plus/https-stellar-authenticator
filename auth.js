@@ -497,9 +497,9 @@ var UI = {
 		global.cosmicLink = new CosmicLink(xdr, network, publicKey)
 		global.xdr = xdr
 
-		var viewer = UI.makeUrlViewer("Not yet available")
-		viewer.inputs.url.disabled = true
-		viewer.inputs.url.onclick = null
+		global.cosmicLink.getUri().then(function(uri) {
+			var viewer = UI.makeUrlViewer(uri)
+		})
 
 		accountExist(publicKey, network)
 			.then(function(bool) {
