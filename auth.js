@@ -1,5 +1,6 @@
 
 var sdk = StellarSdk
+var CosmicLink = cosmicLib.CosmicLink
 
 var global = {
 	cosmicLink: null,
@@ -1125,3 +1126,35 @@ var Form = (function wrapper() {
 	return constructor
 }) ()
 
+/// Use node namespace from old cosmic-lib until I port this file to JS6.
+var node = {
+	create: function(type, tag) {
+		var el = document.createElement(type)
+		if(tag){
+			switch(tag.substr(0,1)){
+				case "#": el.id = tag.substr(1); break;
+				default: el.className = tag
+			}
+		}
+		return el
+	},
+	destroy: function(el) { el.parentNode.removeChild(el) },
+	grab: function(id, parent) {
+		if(!parent) parent=document
+		return document.getElementById(id)
+	},
+	append: function(el1, arg) {
+		if(typeof arg == "string" || arg instanceof Error) {
+			var el2 = document.createTextNode(arg)
+		} else { var el2 = arg }
+		el1.appendChild(el2)
+	},
+	clear: function(el) { while (el.firstChild) { el.removeChild(el.firstChild); }},
+	copyContent: function(el) {
+		el.select()
+		document.execCommand("copy")
+	},
+	appendClass: function(el, newClass) {
+		el.className = el.className + " " + newClass
+	},
+}

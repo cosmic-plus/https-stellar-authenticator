@@ -13,3 +13,6 @@
 [submodule "res"]
 	path = res
 	url = https://github.com/MisterTicot/stellar-authenticator-res
+[submodule "cosmic-lib"]
+	path = cosmic-lib
+	url = https://github.com/MisterTicot/js-cosmic-lib
