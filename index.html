@@ -40,6 +40,12 @@
 		<p>Respecfully,</p>
 		<p>Stellar Authenticator Author</p>
 	</div>
+	<script>document.getElementById("sorry").style.display = "none"</script>
+
+    <div id="loading" class="popup" style="display:none">
+		<h2>Loading...</h2>
+    </div>
+	<script>document.getElementById("loading").style.display = "block"</script>
 
 	<div id="settingPanel">
 		<h1 id="title">Stellar Authenticator</h1>
@@ -120,10 +126,6 @@
 		</div>
     </div>
 
-    <div id="loading" class="popup">
-		<h2>Loading...</h2>
-    </div>
-
     <div id="welcome" class="page" style="display:none">
 		<h2>Welcome to Stellar Authenticator!</h2>
 
@@ -189,8 +191,6 @@
 		</div>
     </footer>
 
-	<script>document.getElementById("sorry").style.display = "none"</script>
-	<script>document.getElementById("loading").style.display = "block"</script>
     <script src="scrypt-async-js/scrypt-async.js"></script>
     <script src="tweetnacl-util-js/nacl-util.js"></script>
 	<script src="tweetnacl-js/nacl.js"></script>
