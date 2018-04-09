@@ -477,9 +477,11 @@ var UI = {
 		global.cosmicLink = new CosmicLink(query, network, publicKey)
 		UI.setQuery(query)
 
-		UI.makeUrlViewer("https://cosmic.link/" + query)
-
-		accountExist(publicKey, network)
+		global.cosmicLink.getUri()
+			.then(function(uri) {
+				UI.makeUrlViewer(uri)
+				return accountExist(publicKey, network)
+			})
 			.then(function(bool) {
 				if(bool) UI.makeSigningInterface()
 				else UI.makeXdrViewer("Can't compute XDR when account is empty.", "error")
