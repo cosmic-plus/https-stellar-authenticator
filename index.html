@@ -55,7 +55,7 @@
 			<div class="window">
 				<h3 onclick="UI.showSetting(accountInfo)">Account</h3>
 				<div id="accountInfo">
-					<input id="secretSeed" readonly />
+					<input id="secretSeed" type="text" readonly />
 					<input id="switchSecret" type="button" value="Show secret seed" onclick="UI.showSecret()">
 					<hr />
 					<input type="button" id="removeAccount" value="Remove account" onclick="UI.removeAccount()">
@@ -101,7 +101,7 @@
 			<span>Testnet account successfully funded by Stellar friendbot.</span>
 		</div>
 
-		<div id="accountNotFunded" class="error" style="display:none">
+		<div id="accountNotFunded" class="CL_error" style="display:none">
 			<span>For some unknow reason, testnet account couldn't be funded.</span>
 		</div>
 

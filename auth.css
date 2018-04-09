@@ -66,7 +66,6 @@ h1
 
 footer
 {
-	z-index: -1;
 	width: 100%;
 	margin: 0;
 	padding: 0;
@@ -78,6 +77,7 @@ footer
 footer a
 {
 	display: block;
+	color: lightgrey;
 	font-weight: bold;
 }
 
@@ -191,6 +191,11 @@ textarea, select
 	color: black;
 }
 
+.error
+{
+	color: red;
+}
+
 .gotIt
 {
 	position: "block";
@@ -208,7 +213,7 @@ textarea, select
 
 a
 {
-	color: lightgrey;
+	color: grey;
 	text-align: center;
 	text-decoration: none;
 	font-weight: bold;
@@ -261,16 +266,6 @@ a:hover
 	border-radius: 0.3em;
 	padding: 0.3em;
 }
-
-.page .error
-{
-	margin: 0.5em;
-	border: 0.1em solid tomato;
-	border-radius: 0.3em;
-	padding: 0.3em;
-	background-color: salmon;
-}
-
 
 /* Setting panel formatting */
 
@@ -413,11 +408,6 @@ header input[type="text"] { width: 98%; }
 .popup .content
 {
     padding: 0 0.5em;
-}
-
-.popup .error
-{
-	color: red;
 }
 
 .popup [type="button"], .popup [type="submit"], .popup button
