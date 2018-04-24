@@ -497,7 +497,7 @@ var UI = {
 		var account = accounts.current()
 		var network = accountNetwork(account)
 		var publicKey = database.publicKey(accounts.DB, account)
-		global.cosmicLink = new CosmicLink(xdr, network, true)
+		global.cosmicLink = new CosmicLink(xdr, network, publicKey)
 		global.xdr = xdr
 
 		global.cosmicLink.getQuery().then(function(query) {
