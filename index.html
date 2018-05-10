@@ -1,203 +1,306 @@
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Stellar Authenticator</title>
-    <link rel="stylesheet" type="text/css" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="auth.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Stellar Authenticator</title>
+  <link rel="stylesheet" type="text/css" href="authenticator.css">
 </head>
 
-<body id="body" onload="UI.init()">
+<body id="body" onload="authenticator.init()">
+  <header>
+    <h1 id="title">Stellar Authenticator</h1>
 
-	<div id="shadow"></div>
-
-	<div id="sorry" class="page">
-		<h2>Please enable Javascript :)</h2>
-
-		<p>Stellar Authenticator is heavily based on Javascript. This is
-		because all the code run locally on your machine; As we don't store any
-		data nor interfer in any mean in your usage of this application besides
-		serving the code to you. There's several reason you may come to this
-		page without a proper Javascript support. If it's because your device
-		doesn't handle it, there's not much we can do about it.</p>
-
-		<p>Maybe you disabled Javascript because malware/security/anonymity
-		concerns. You should know that Stellar Authenticator is a free software
-		and the code we serve is fully available to be reviewed. If you have
-		the required skill you can easily check that we don't run any external
-		script here.</p>
-
-		<p>If you wish, it is possible to download this web application and to
-		run it from your computer, or even offline.</p>
-
-		<p>If for some reason you landed here but have a working Javascript
-		implementation, it may means that you're using a device that we don't
-		properly support. In this case, we'll be happy to learn about you and
-		to implement a better support for your use case.</p>
-
-		<p>Respecfully,</p>
-		<p>Stellar Authenticator Author</p>
-	</div>
-	<script>document.getElementById("sorry").style.display = "none"</script>
-
-    <div id="loading" class="popup" style="display:none">
-		<h2>Loading...</h2>
-    </div>
-	<script>document.getElementById("loading").style.display = "block"</script>
-
-	<div id="settingPanel">
-		<h1 id="title">Stellar Authenticator</h1>
-		<header id="header" style="display:none">
-			<input id="menuButton" type="button" onclick="UI.showMenu()" value="☰"><select id="accounts" onChange="UI.selectAccount()"></select>
-			<input id="publicKey" type="text" onclick="node.copyContent(this)" readonly>
-		</header>
-		<form id="settings" style="display:none">
-			<div class="window">
-				<h3 onclick="UI.showSetting(accountInfo)">Account</h3>
-				<div id="accountInfo">
-					<input id="secretSeed" type="text" readonly />
-					<input id="switchSecret" type="button" value="Show secret seed" onclick="UI.showSecret()">
-					<hr />
-					<input type="button" id="removeAccount" value="Remove account" onclick="UI.removeAccount()">
-				</div>
-			</div>
-
-			<div class="window">
-				<h3 onclick="UI.showSetting(accountAdd)">Add account</h3>
-				<div id="accountAdd">
-					<input type="button" value="Import secret seed" onclick="UI.importSeed()">
-					<hr />
-					<input type="button" value="Create new account" onclick="UI.createNewAccount()">
-				</div>
-			</div>
-
-			<div class="window">
-				<h3 onclick="UI.showSetting(security)">Security</h3>
-				<div id="security">
-					<input id="passwordChange" type="button" value="Change password" onclick="passwordChange()" disabled>
-				</div>
-			</div>
-		</form>
-	</div>
-
-    <div id="main" class="page" style="display:none">
-		<div id="loadingAccount" class="loading">
-			<span>Loading account information...</span>
-			<div class="loadingAnim"></div>
-		</div>
-
-		<div id="fundingAccount" class="loading" style="display:none">
-			<span>Funding testnet account...</span>
-			<span class="loadingAnim"></span>
-		</div>
-
-		<div id="emptyAccount" class="warning" style="display:none">
-			<h3>Empty Account</h3>
-			<span>Your account is still empty. To begin to use it and sign
-			transactions, you need to fund it with at least 1.1 XLM (lumen). </span>
-		</div>
-
-		<div id="accountFunded" class="done" style="display:none">
-			<span>Testnet account successfully funded by Stellar friendbot.</span>
-		</div>
-
-		<div id="accountNotFunded" class="warning" style="display:none">
-			<span>For some unknow reason, testnet account couldn't be funded.</span>
-		</div>
-
-		<div id="transaction">
-			<div id="openTransaction">
-				<h2>Open transaction</h2>
-				<p>You can open a transaction that you'd like to sign using its URL or its XDR.</p>
-			</div>
-			<div id="readTransaction" style="display:none">
-				<h2>Transaction</h2>
-				<div id="CL_transactionNode"></div>
-				<div id="CL_statusNode"></div>
-			</div>
-
-			<form id="forms"></form>
-			<form id="closeTransaction">
-				<hr>
-				<input type="submit" value="Close transaction" onclick="return UI.closeTransaction()">
-			</form>
-		</div>
+    <div id="accounts" style="display:none">
+      <input id="menuButton" type="button" onclick="authenticator.showMenu()" value="☰"><select id="accountSelector" onchange="authenticator.selectAccount()"></select>
+      <input id="publicKey" type="text" placeholder="No account selected" onclick="authenticator.copyContent(this)" readonly>
     </div>
 
-    <div id="welcome" class="page" style="display:none">
-		<h2>Welcome to Stellar Authenticator!</h2>
+  </header>
 
-		<p>Stellar Authenticator is a web application that securely store our
-		Stellar keys. It allows us to sign Stellar transaction, and that's it.
-		Keeping the focus on this sole task allow us to aim for a high level of
-		quality and security.</p>
+  <div id="loading" class="popup" style="display:none">
+    <hr>
+      Loading...
+    <hr>
+  </div>
+  <script>document.getElementById("loading").style.display = "block"</script>
 
-		<p>You should know that the program run entirely in your browser, and
-		all the datas are stored locally in its HTML5 (web/cache) local
-		storage. You'll be able to access your keys from this machine and from
-		this browser only. The only information sent away is the transactions
-		you sign, in order to have them validated by the network.</p>
+  <main style="display:none">
+    <div id="messages">
+      <div id="password"></div>
+      <div id="notifications"></div>
+    </div>
+  </main>
 
-		<p>The code is under MIT free software licence. It is served by Github
-		and Cloudflare, with 2 factor authentication enabled so it's unlikely
-		anybody could hijack the service. The keys are encrypted using
-		state-of-the-art cryptography, namely xsalsa20-poly1305.</p>
+  <div id="welcome" class="page">
+    <h2>Welcome to Stellar Authenticator!</h2>
+    <p>
+      Stellar Authenticator is a tool for creating accounts and validating
+      transactions on the Stellar blockchain. On this network, each one is
+      responsible for its own accounts and Stellar Authenticator helps you with
+      that. All your private datas are kept encrypted on your computer and only
+      your requests are sent on the internet.
+    </p>
 
-		<p>Please remember that this service is currently under heavy
-		development (alpha phase). We ask you to consider yourself as an early
-		tester and to report to us any problem you may encounter so we can fix
-		it. Please use the test network or little amounts. The code is solid
-		but early release may behave unexpectedely from time to time. We'll
-		improve the experience and add features with regularity during the
-		coming year.</p>
+    <p>
+      You are a few click away from your Stellar account. All you need to do is
+      to pick an username and a password. Please choose something that you will
+      remember for sure. If you loose them, you won't be able to access your
+      accounts anymore. There's no password recovery mechanism as nobody else
+      will know about your username/password.
+    </p>
 
-		<div class="gotIt"><a id="gotItLink" onclick="UI.signIn()">➞ Got It!</a></div>
-	</div>
+    <p>
+      If you only want to see how Stellar Authenticator works, you can try the
+      <a onclick="authenticator.demoVersion()">demo version</a>.  Please remember that
+      there's not much to do in there, as it is merely an authenticator for
+      external Stellar services.
+    <p>
 
-	<div id="signIn" class="page" style="display:none">
-		<h2>Sign in</h2>
-		<p>It time to choose your password!</p>
+    <p>
+      If you prefer to learn more about Stellar first, you can take a look at the
+      official website, at
+      <a href="https://stellar.org" target="_blank" rel="noopener">stellar.org</a>
+      .
+    </p>
 
-		<p>As we don't store any data about you and your keys, we won't be able
-		to recover your password if you happen to loose it. Things are
-		encrypted so well that nobody will be able to get your private keys
-		back. So here's the thing: pick a password you will remember for
-		sure!</p>
+    <hr>
 
-		<p>The strongness of your password determine the efficiency of the
-		encryption. You are the only one knowing how much you want to store on
-		your accounts. If it's little amounts, you don't need a very strong
-		password. If you want it to be hard-solid, though, you can go for 12
-		characters with a bit of everything and no dictionnary word or a
-		complete human phrase.</p>
+    <form>
+      <a onclick="authenticator.newUser()">New user</a>
+      |
+      <a onclick="authenticator.importUser()">Import user</a>
+      |
+      <a onclick="authenticator.demoVersion()">Demo</a>
+    </form>
+  </div>
 
-		<p>However, because each one keeps its encrypted database at home
-		there's no central point of attack and this sole fact makes us pretty
-		safe.</p>
+  <div id="openTransaction" class="page">
+    <h2>Open transaction</h2>
+    <p>
+      You can open a transaction that you'd like to sign using its URL or its XDR.
+    </p>
 
-		<p>Just a word about local storage: you should be carefull when
-		cleaning your browser cache. There's a post on stack overflow detailing
-		how will behave your own browser: <a
-		href="https://stackoverflow.com/a/37105645" target="_blank">open</a>.
-	</div>
+    <hr>
 
-    <footer id="footer">
-		<a id="aboutLink" onclick="UI.about()" style="display:none">About Stellar Authentificator</a>
-		<div id="disclaimer" style="display:none">
-			<p>Stellar Authenticator is a free software copyrighted under MIT licence.</p>
-			<p>Permission is granted to freely use, read, change and share.</p>
-		</div>
-    </footer>
+    <form id="openUri">
+      <h3>Cosmic Link / Transaction URL</h3>
+      <span class="info"></span>
+      <input name="uri" type="text" placeholder="Copy here">
+      <button name="submit" type="submit">Open</button>
+    </form>
 
-    <script src="scrypt-async-js/scrypt-async.min.js"></script>
-    <script src="tweetnacl-util-js/nacl-util.min.js"></script>
-	<script src="tweetnacl-js/nacl.min.js"></script>
-    <script src="bower-js-stellar-sdk/stellar-sdk.min.js"></script>
-    <script src="cosmic-lib/cosmic-lib.js"></script>
-    <script src="auth.js"></script>
-	<script>document.getElementById("loading").style.display = "none"</script>
+    <hr>
 
-    <link rel="stylesheet" type="text/css" href="cosmic-lib/cosmic-lib.css">
+    <form id="openXdr">
+      <h3>Transaction XDR</h3>
+      <span class="info"></span>
+      <textarea name="xdr" rows="3" placeholder="Copy here"></textarea>
+      <button name="submit" type="submit">Open</button>
+    </form>
+  </div>
 
+  <div id="readTransaction" class="page">
+    <h2>Transaction</h2>
+    <p id="CL_transactionNode"></p>
+
+    <hr>
+
+    <form id="uriViewer">
+      <h3>Cosmic Link / Transaction URL</h3>
+      <input name="uri" type="text" placeholder="Parsing..." readonly
+        onclick="authenticator.copyContent(this)">
+    </form>
+
+    <hr>
+
+    <form id="xdrViewer">
+      <h3>Transaction XDR</h3>
+      <textarea name="xdr" placeholder="Computing..." rows="3" readonly
+        onclick="authenticator.copyContent(this)"></textarea>
+    </form>
+
+    <hr>
+
+    <form>
+      <input id="signingButton" type="button"
+        onclick="authenticator.signAndSend()" value="Sign &amp; Send"
+      >
+    <form>
+
+    <hr>
+
+    <form>
+      <input type="button" onclick="authenticator.closeTransaction()"
+        value="Close">
+    </form>
+
+  </div>
+
+
+  <div id="about" class="page">
+    <h2> About </h2>
+
+
+    <h3> Contact </h3>
+
+    <p>
+      If you wish to contribute, ask a question or make a suggestion, you're
+      welcome to do so in the <a target="_blanck" rel="noopener"
+      href="https://galactictalk.org/d/1265-stellar-authenticator-org-alpha-release">
+      dedicated thread at Galactic Talk</a>. If you prefer to contact me
+      directly you can do so at <a
+      href="mailto:author@stellar-authenticator.org">
+      author@stellar-authenticator.org</a>.
+    </p>
+
+    <h3> Donate </h3>
+
+    <p> Tips are also welcome at
+      <a onclick="authenticator.pushQuery('?payment&amount=10&destination=donate*stellar-authenticator.org')">
+        donate*stellar-authenticator.org
+      </a>.
+    </p>
+
+    <h3> Github repository </h3>
+    <p>
+      The Gihub repository is at <a target="_blank" rel="noopen"
+      href="https://github.com/MisterTicot/stellar-authenticator">
+      https://github.com/MisterTicot/stellar-authenticator</a>.
+    </p>
+
+    <h3> History </h3>
+
+    <p>I initially came to Stellar looking for a solution for organising a
+    small ICO (a fundraise based on the blockchain). I wanted to offer a way
+    for donators to securely & easily manage their wallet by themself. I was
+    not satisfied by available solution security-wise, as exposing donators to
+    the possibility of a wallet crack was not an option. I've been offered the
+    means to go ahead and implement my own solution, thanks to Stellar
+    Foundation kind support. </p>
+
+    <h3> Problematic </h3>
+
+    <p> I've created Stellar Authenticator and cosmic links in an effort to
+    bring additional security into the Stellar ecosystem. Precisely, I aimed to
+    offer a solution to the following problems : </p>
+    <ul>
+      <li>Most Stellar services implement their own way to create/secure seed
+      wich's redundant. This energy could be spent developping their own
+      specificity instead.</li>
+
+      <li>Most Stellar wallets/exchanges don't allow users to easily sign
+      transaction emitted by foreign source.</li>
+
+      <li>User experience may be tedious for non-technical beings. (Althought
+      better than most blockchain, I would say)</li>
+    </ul>
+
+    <h3> Solution </h3>
+
+    <p>I started looking at a solution that would achieve those goals :</p>
+
+    <ul>
+      <li> Stellar services would be offered a way to rely on already
+      implemented tools to login/sign transaction. Coders could spend more
+      energy on implementing something new. </li>
+
+      <li> Stellar wallets would be offered a way to serve as login/signing
+      tools for thoses services. </li>
+
+      <li> New users would be offered a platform that allow them to secure
+      themself without headaches. </li>
+    </ul>
+
+    <h3> Design </h3>
+
+    <p> After talking with other community members, the solution came up of
+    expressing Stellar transaction request as URL queries. That would be the
+    common language between all services/wallets. The cosmic.link website would
+    serve as a secure relay when direct connection between the service and the
+    wallet would not be possible. In this scheme, Stellar Authenticator offer
+    an way to create accounts and securely store the secret seeds. It allows to
+    sign transaction so that you don't need to give away thoses seeds. By
+    narrowing its purpose solely on this task, I can keep the codebase size
+    under control. Then, this is easier to audit it and to keep it secure and
+    well-functioning. </p>
+
+    <h3> Future </h3>
+
+    <p> Nowaday this design is implemented and functional. This is still in the
+    beta phase, thought. This means that it's stable enough to be used and the
+    core features have been tested enough. However, some additional features
+    are still to be implement before I can say to job is done. Namely support
+    for multi-operation transactions, multi-signature, paper wallets and
+    hardware wallets; Securing further cosmic.link and
+    stellar-authenticator.org; Translating in other languages and writing
+    documentation. </p>
+
+    <hr>
+
+    <form>
+      <input type="button" onclick="authenticator.popQuery()" value="Back">
+    </form>
+  </div>
+
+  <noscript>
+    <h2>Please enable Javascript :)</h2>
+
+    <p>Stellar Authenticator is heavily based on Javascript. This is
+    because all the code run locally on your machine; We don't store any
+    data nor interfer by any means in your usage of this application besides
+    serving the code to you. There's several reason you may come to this
+    page without a proper Javascript support. If it's because your device
+    doesn't handle it, there's not much we can do about it.</p>
+
+    <p>Maybe you disabled Javascript because malware/security/anonymity
+    concerns. You should know that Stellar Authenticator is a free software
+    and the code we serve is fully available to be reviewed. If you have
+    the required skill you can easily check that we don't run any external
+    script here.</p>
+
+    <p>If you wish, it is possible to download this web application and to
+    run it from your computer, or even offline.</p>
+
+    <p>Respecfully,</p>
+    <p>Mister Ticot</p>
+  </noscript>
+
+  <div id="settings">
+    <h3 onclick="authenticator.showSetting(this)" class="show">Account</h3>
+    <div>
+      <input id="secretSeed" type="text" readonly style="display:none;">
+      <input id="switchSecret" type="button" value="Show secret seed" onclick="authenticator.showSecret()">
+      <input type="button" id="removeAccount" value="Remove account" onclick="authenticator.removeAccount()">
+    </div>
+
+    <h3 onclick="authenticator.showSetting(this)">Add account</h3>
+    <div>
+      <input type="button" value="Import secret seed" onclick="authenticator.importSeed()">
+      <input type="button" value="Create new account" onclick="authenticator.newAccount()">
+    </div>
+
+    <h3 onclick="authenticator.showSetting(this)">User</h3>
+    <div>
+      <input type="button" value="Export backup" onclick="authenticator.exportBackup()">
+      <input type="button" value="Change password" onclick="authenticator.passwordChange()">
+      <input type="button" value="Remove user" onclick="authenticator.removeUser()">
+    </div>
+
+    <h3 onclick="authenticator.logout()">Log Out</h3>
+    <span>You are automatically logged out when you close the last Stellar
+    Authenticator tab</span>
+  </div>
+
+  <footer id="footer">
+    <a id="aboutLink" onclick="authenticator.pushQuery('?about')" style="display:none">About Stellar Authenticator</a>
+    <div id="disclaimer">
+      <p>Stellar Authenticator is a free software copyrighted under MIT licence.</p>
+      <p>Permission is granted to freely use, modify and share.</p>
+    </div>
+  </footer>
+
+  <script src="bower-js-stellar-sdk/stellar-sdk.min.js"></script>
+  <script src="authenticator.js"></script>
+  <script>document.getElementById("loading").style.display = "none"</script>
 </body>
 </html>

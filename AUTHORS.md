@@ -1,1 +1,1 @@
-Mister.Ticot
+Mister.Ticot <author@stellar-authenticator.org>
