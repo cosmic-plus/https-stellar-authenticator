@@ -90,7 +90,7 @@
     <form id="openUri">
       <h3>Cosmic Link / Transaction URL</h3>
       <span class="info"></span>
-      <input name="uri" type="text" placeholder="Copy here">
+      <input name="uri" type="text" placeholder="Copy here" required>
       <button name="submit" type="submit">Open</button>
     </form>
 
@@ -99,14 +99,23 @@
     <form id="openXdr">
       <h3>Transaction XDR</h3>
       <span class="info"></span>
-      <textarea name="xdr" rows="3" placeholder="Copy here"></textarea>
+      <textarea name="xdr" rows="3" placeholder="Copy here" required></textarea>
       <button name="submit" type="submit">Open</button>
+      <input id="xdrStripSource" name="stripSource" type="checkbox"
+        onclick="authenticator.openXdrOption(this)">
+      <label for="xdrStripSource">Strip source account</label>
+      <input id="xdrStripSequence" name="stripSequence" type="checkbox"
+        onclick="authenticator.openXdrOption(this)">
+      <label for="xdrStripSequence">Strip sequence number</label>
+      <input id="xdrStripSignatures" name="stripSignatures" type="checkbox"
+        onclick="authenticator.openXdrOption(this)">
+      <label for="xdrStripSignatures">Strip signatures</label>
     </form>
   </div>
 
   <div id="readTransaction" class="page">
     <h2>Transaction</h2>
-    <p id="CL_transactionNode"></p>
+    <p id="CL_htmlNode"></p>
 
     <hr>
 

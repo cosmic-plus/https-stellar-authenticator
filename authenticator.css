@@ -306,7 +306,7 @@ label,
 [type="submit"]
 {
     display: inline-block;
-    width: 100%;
+    width: 97%;
     max-width: 30em;
     margin: 0.1em 0;
     border: 0.1em lightgrey;
@@ -340,6 +340,7 @@ textarea, select
 
 [type="checkbox"] + label
 {
+    margin: 0;
     background-color: white;
     font-style: italic;
     color: dimgrey;
@@ -430,10 +431,6 @@ main .page {
     padding: 0.1em;
     margin-left: 1%;
     margin-right: 0.5%;
-}
-
-#accounts input[type="text"] {
-    width: 98%;
 }
 
 /*** Settings menu styling ***/
@@ -610,9 +607,9 @@ footer #disclaimer
 #copied
 {
     position: absolute;
-    -webkit-transform: translate(-4em, 0.2em);
-        -ms-transform: translate(-4em, 0.2em);
-            transform: translate(-4em, 0.2em);
+    -webkit-transform: translate(-4em, 0.225em);
+        -ms-transform: translate(-4em, 0.225em);
+            transform: translate(-4em, 0.225em);
     width: 3em;
     background-color: ghostwhite;
     background-color: rgba(248, 248, 255, 0.9);

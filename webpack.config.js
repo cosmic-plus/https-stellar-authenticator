@@ -14,6 +14,9 @@ const config = {
        use: ['style-loader', 'postcss-loader']
      }
     ]
+  },
+  externals: {
+    'stellar-sdk': 'StellarSdk'
   }
 }
 
