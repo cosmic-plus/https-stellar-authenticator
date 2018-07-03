@@ -11,7 +11,7 @@
     "build-js": "webpack -p",
     "build": "npm run build-js && npm run build-css && npm run build-html",
     "watch": "webpack -d --watch",
-    "serve": "npm run watch & live-server --ignore='**/node_modules/**,**/src/**'"
+    "serve": "npm run watch & live-server --no-browser --ignore='**/node_modules/**,**/src/**'"
   },
   "browserslist": "last 4 versions, > 0.1%",
   "keywords": [
