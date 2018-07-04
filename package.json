@@ -1,6 +1,6 @@
 {
   "name": "stellar-authenticator",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "An application to easily & securely sign Stellar transactions",
   "main": "authenticator.js",
   "scripts": {
