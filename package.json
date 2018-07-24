@@ -6,10 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "standard --fix 'src/**.js'",
+    "get-src": "git submodule update --init --recursive",
     "build-css": "cat src/*.css | autoprefixer-cli -o authenticator.css",
     "build-html": "cp -f src/*.html .",
     "build-js": "webpack -p",
     "build": "npm run build-js && npm run build-css && npm run build-html",
+    "check": "npm ci && npm run get-src && npm run build && git status",
     "watch": "webpack -d --watch",
     "serve": "npm run watch & live-server --no-browser --ignore='**/node_modules/**,**/src/**'"
   },
