@@ -9,11 +9,13 @@
   <meta name="description" content="Safely create and manage your Stellar
     accounts.">
 
-  <link rel="manifest" href="manifest.json">
   <meta name="twitter:card" content="summary">
   <meta name="msapplication-config" content="browserconfig.xml">
   <meta name="msapplication-TileColor" content="#00aba9">
 
+  <meta property="og:title" content="Stellar Authenticator ~ Keep it safe and simple !">
+  <meta property="og:description" content="Safely create and manage your Stellar
+    accounts.">
   <meta property="og:image" content="https://stellar-authenticator.org/icons/192x192.png">
   <meta property="og:image:height" content="192">
   <meta property="og:image:width" content="192">
@@ -26,6 +28,7 @@
   <link rel="mask-icon" href="icons/safari.svg" color="#5bbad5">
 
   <link rel="stylesheet" type="text/css" href="authenticator.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body id="body" onload="authenticator.init()">
@@ -40,16 +43,14 @@
   </header>
 
   <div id="loading" class="popup" style="display:none">
-    <hr>
-      Loading...
-    <hr>
+    <h3>Loading</h3>
   </div>
   <script>document.getElementById("loading").style.display = "block"</script>
 
   <main style="display:none">
     <div id="messages">
-      <div id="password"></div>
       <div id="notifications"></div>
+      <div id="password"></div>
     </div>
   </main>
 
@@ -73,7 +74,7 @@
 
     <p>
       If you only want to see how Stellar Authenticator works, you can try the
-      <a onclick="authenticator.demoVersion()">demo version</a>.  Please remember that
+      <a onclick="authenticator.guestMode()">guest mode</a>.  Please remember that
       there's not much to do in there, as it is merely an authenticator for
       external Stellar services.
     <p>
@@ -81,18 +82,18 @@
     <p>
       If you prefer to learn more about Stellar first, you can take a look at the
       official website, at
-      <a href="https://stellar.org" target="_blank" rel="noopener">stellar.org</a>
-      .
+      <a href="https://stellar.org" target="_blank" rel="noopener">stellar.org</a>.
     </p>
 
     <hr>
 
-    <form>
-      <a onclick="authenticator.newUser()">New user</a>
+    <form id="loginOptions">
+      <span class="info"></span>
+      <a onclick="authenticator.newUser()">New User</a>
       |
-      <a onclick="authenticator.importUser()">Import user</a>
+      <a onclick="authenticator.importUser()">Import User</a>
       |
-      <a onclick="authenticator.demoVersion()">Demo</a>
+      <a onclick="authenticator.guestMode()">Guest Mode</a>
     </form>
   </div>
 
@@ -132,7 +133,7 @@
 
   <div id="readTransaction" class="page">
     <h2>Transaction</h2>
-    <div id="CL_htmlNode"></div>
+    <p id="CL_htmlNode"></p>
 
     <hr>
 
@@ -181,7 +182,7 @@
     means to go ahead and implement my own solution, thanks to Stellar
     Foundation kind support. </p>
 
-    <h3> What I'm solving </h3>
+    <h3> What is getting solved </h3>
 
     <p> I've created Stellar Authenticator and cosmic links in an effort to
     bring additional security into the Stellar ecosystem. Precisely, I aimed to
@@ -215,7 +216,6 @@
     </ul>
 
     <h3> Design </h3>
-
     <p> After talking with other community members, the solution came up of
     expressing Stellar transaction requests as URL queries. That would be the
     common language between all services/wallets. The
@@ -229,33 +229,30 @@
     it secure and well-functioning. </p>
 
     <h3> Future </h3>
-
     <p> Nowaday, this design is fully implemented and functional. This is still
     in the beta phase, though. This means that it's stable enough to be used
     and the core features have been tested enough. However, some additional
     features are still to be implemented before I can say to job is done.
     Namely cloud syncing, hardware wallets support, encrypted paper wallet, a
-    better support for multi-signatures accounts and transaslation in other
+    better support for multi-signatures accounts and translation into other
     languages. </p>
-
-    <h3> Licence </h3>
-
-    <p>Stellar Authenticator is under <a target="_blank" rel="noopener"
-      href="https://en.wikipedia.org/wiki/MIT_License">MIT Licence</a>. This is
-    a free software licence that allows you to read, copy, edit and distribute
-    the code with or without your changes. The development costs are supported
-    by the Stellar Foundation and the donators.</p>
 
     <h3> Source Code </h3>
     <p>
       The Gihub repository is at <a target="_blank" rel="noopener"
       href="https://github.com/MisterTicot/stellar-authenticator">
       https://github.com/MisterTicot/stellar-authenticator</a>. This website is
-      served directly from there.
+      served directly from there through CloudFlare.
     </p>
 
-    <h3> Contact </h3>
+    <h3> Licence </h3>
+    <p>Stellar Authenticator is under <a target="_blank" rel="noopener"
+      href="https://en.wikipedia.org/wiki/MIT_License">MIT Licence</a>. This is
+    a free software licence that allows you to read, copy, edit and distribute
+    the code with or without your changes. The development costs are supported
+    by the Stellar Foundation and the donators.</p>
 
+    <h3> Contact </h3>
     <p>
       If you wish to contribute, ask a question or make a suggestion, you're
       welcome to do so in the <a target="_blank" rel="noopener"
@@ -267,11 +264,9 @@
     </p>
 
     <h3> Donate </h3>
-
     <p> Tips are welcome at
       <a onclick="authenticator.pushQuery('?payment&amount=20&destination=donate*stellar-authenticator.org')">
-        donate*stellar-authenticator.org
-      </a>.
+        donate*stellar-authenticator.org</a>.
     </p>
 
     <hr>
@@ -313,7 +308,7 @@
       <input type="button" id="removeAccount" value="Remove account" onclick="authenticator.removeAccount()">
     </div>
 
-    <h3 onclick="authenticator.showSetting(this)">Add account</h3>
+    <h3 onclick="authenticator.showSetting(this)">Add Account</h3>
     <div>
       <input type="button" value="Import secret seed" onclick="authenticator.importSeed()">
       <input type="button" value="Create new account" onclick="authenticator.newAccount()">
@@ -332,10 +327,26 @@
   </div>
 
   <footer id="footer">
-    <a id="aboutLink" onclick="authenticator.pushQuery('?about')" style="display:none">About Stellar Authenticator</a>
+    <div id="social" style="display:none">
+      <a title="Telegram" target="_blank" rel="noopener" href="https://t.me/stellar_authenticator">
+        <svg viewBox="-40 -40 380 380"><path d="M5.299 144.645l69.126 25.8 26.756 86.047c1.712 5.511 8.451 7.548 12.924 3.891l38.532-31.412a11.496 11.496 0 0 1 14.013-.391l69.498 50.457c4.785 3.478 11.564.856 12.764-4.926L299.823 29.22c1.31-6.316-4.896-11.585-10.91-9.259L5.218 129.402c-7.001 2.7-6.94 12.612.081 15.243zm91.57 12.066l135.098-83.207c2.428-1.491 4.926 1.792 2.841 3.726L123.313 180.87a23.112 23.112 0 0 0-7.163 13.829l-3.798 28.146c-.503 3.758-5.782 4.131-6.819.494l-14.607-51.325c-1.673-5.854.765-12.107 5.943-15.303z"/></svg>
+      </a>
+      <a title="GitHub" target="_blank" rel="noopener" href="https://github.com/MisterTicot/stellar-authenticator">
+        <svg viewBox="0 0 2048 2048"><path d="M784.594 1775.93c-5.739 0-12.11-.599-19.155-1.886l2.875-31.625 28.39-.006c4.714-1.315 8.457-3.416 11.354-6.031 4.962-4.48 7.826-10.694 9.001-17.118.393-2.152.582-4.53.582-7.036 0-17.17-.153-33.205-.356-54.726-.23-24.168-.517-54.196-.754-88.622-258.799 46.983-319.217-134.775-321.697-142.595-41.18-104.09-97.812-130.628-97.976-130.707l-2.125-1.188c-130.439-89.142 15.228-87.294 15.642-87.293h1c102.02 7.181 156.354 101.244 159.315 106.5l.01-.006c31.012 53.133 69.166 79.334 107.077 90.157 54.992 15.7 110.447-.181 143.204-13.723 4.543-26.858 12.028-50.08 21.37-69.753 6.293-13.255 13.452-24.943 21.15-35.091-98.828-14.023-197.87-42.657-275.24-107.786-85.844-72.266-144.027-188.348-144.027-377.124h.063c.008-52.788 9.145-100.878 25.819-144.331 16.526-43.069 40.476-81.656 70.3-115.817-5.706-16.214-13.63-44.472-16.131-81.881-3.06-45.751 1.932-105.447 29.002-173.888l.625-1.25c.016-.033 11.768-10.041 28.38-10.882 10.959-.554 27.498.02 49.82 4.534 43.471 8.79 110.06 32.896 201.988 94.268 36.32-9.764 73.806-17.184 111.83-22.298 41.14-5.532 83.032-8.37 124.868-8.557h.125c41.79.187 83.634 3.026 124.75 8.555 38.04 5.117 75.562 12.543 111.95 22.306 184.792-123.404 269.95-96.186 270.201-96.113l7.445 2.207 2.868 7.23c27.174 68.531 32.213 128.17 29.181 173.825-2.484 37.4-10.377 65.647-16.06 81.874 29.807 34.076 53.683 72.614 70.172 115.667 16.71 43.628 25.822 91.799 25.822 144.55 0 189.3-58.269 305.328-144.281 377.336-77.426 64.821-176.587 93.08-275.626 106.865 11.58 15.146 21.99 33.783 30.119 55.972 10.94 29.872 17.798 66.258 17.798 109.27 0 76.747-.567 156.597-.941 209.467-.137 19.401-.241 33.893-.241 53.047h-.063c.001 2.393.247 4.96.762 7.63 1.233 6.395 4.064 12.51 8.9 16.846 2.651 2.377 6.015 4.315 10.189 5.605l30.006-.006 3 31.625c-7.11 1.37-13.83 2.007-20.163 2.01-6.132.004-11.78-.612-16.968-1.753l-538.689.103c-5.055 1.066-10.534 1.642-16.46 1.642z"/></svg>
+      </a>
+      <a title="Galactic Talk" target="_blank" rel="noopener" href="https://galactictalk.org/d/1265-stellar-authenticator-org-alpha-release">
+        <svg viewBox="-32 -32 576 576"><path d="M221.4 81.6C102.4 81.6 6 153.7 6 242.7 6 295.8 40.5 343 93.6 372.3c-5.2 18.1-17.3 40.6-45.3 56.4 0 0 52.9 13.5 97.9-35.1 23.4 6.5 48.8 10.1 75.3 10.1 119 0 215.4-72.1 215.4-161S340.4 81.6 221.4 81.6zm-99.1 126.9c18.9 0 34.1 15.3 34.1 34.1 0 18.9-15.3 34.1-34.1 34.1-18.9 0-34.1-15.3-34.1-34.1-.1-18.8 15.2-34.1 34.1-34.1zm99.1 68.3c-18.9 0-34.1-15.3-34.1-34.1 0-18.9 15.3-34.1 34.1-34.1s34.1 15.3 34.1 34.1c.1 18.8-15.2 34.1-34.1 34.1zm99.2 0c-18.9 0-34.1-15.3-34.1-34.1 0-18.9 15.3-34.1 34.1-34.1 18.9 0 34.1 15.3 34.1 34.1s-15.3 34.1-34.1 34.1z"/><path d="M455 387.8c31-17.1 51-44.6 51-75.5 0-33.8-24-63.5-59.9-80 .3 3.5.4 6.9.4 10.4 0 46.2-23.8 89.4-67 121.6-17.1 12.8-36.4 23.2-57.2 31.1 17.4 6.8 37.2 10.7 58.1 10.7 15.4 0 30.2-2.1 43.9-5.9 26.2 28.3 57 20.4 57 20.4-16.3-9.1-23.3-22.3-26.3-32.8z"/></svg>
+      </a>
+      <a title="Email" href="mailto:author@stellar-authenticator.org">
+        <svg viewBox="-39 -39 450 450"><path d="M356.92 57.712H15.525C6.986 57.712 0 64.7 0 73.236v225.971c0 8.539 6.986 15.525 15.525 15.525H356.92c8.538 0 15.524-6.986 15.524-15.525V73.236c0-8.537-6.986-15.524-15.524-15.524zM242.954 197.005c28.809 19.424 103.25 77.049 103.25 77.049 2.965 2.009 3.177 7.16 1.693 10.229-1.483 3.07-6.122 4.938-9.087 2.93 0 0-79.24-57.212-109.561-77.969-1.678-1.148-3.164.23-3.164.23l-33.247 26.527c-1.818 1.492-4.215 2.314-6.745 2.314s-4.926-.822-6.746-2.314l-33.629-26.838s-1.158-1.009-2.475-.096c-29.972 20.805-108.867 78.145-108.867 78.145-2.964 2.009-8.604.141-10.087-2.93-1.483-3.068-1.271-8.22 1.693-10.229 0 0 74.535-57.445 102.884-76.768 1.619-1.104-.08-2.727-.08-2.727L23.662 99.908c-3.822-3.133-4.966-8.744-2.605-12.775 1.402-2.398 3.872-3.83 6.604-3.83 1.924 0 3.865.723 5.466 2.035l149.502 131.025c.883.723 2.145 1.139 3.464 1.139s2.581-.416 3.465-1.139L339.059 85.338c1.601-1.313 3.542-2.035 5.467-2.035 2.732 0 5.201 1.432 6.604 3.83 2.36 4.031 1.216 9.643-2.604 12.775l-105.404 94.945c-.001.001-1.486 1.261-.168 2.152z"/></svg>
+      </a>
+      <a id="aboutIcon" title="About" onclick="authenticator.pushQuery('?about')">
+        <svg viewBox="-4 -4 40 40"><path d="M10 16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8v4h16v-4h-1.992c-1.102 0-2-.895-2-2L20 12H8v4h2z"/><circle cx="16" cy="4" r="4"/></svg>
+      </a>
+    </div>
     <div id="disclaimer">
-      <p>Stellar Authenticator is a free software under MIT licence</p>
-      <p>This service is independent from the Stellar Foundation</p>
+      <p>Stellar Authenticator is a free software under MIT licence.</p>
+      <p>This service is independent from the Stellar Foundation.</p>
     </div>
   </footer>
 
