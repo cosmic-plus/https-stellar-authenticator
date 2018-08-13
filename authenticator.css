@@ -348,8 +348,8 @@ input
     background: ghostwhite;
 }
 
-textarea:hover:enabled:not(:invalid),
-input:hover:enabled:not(:invalid),
+textarea:hover:enabled,
+input:hover:enabled,
 select:hover:enabled,
 button:hover:enabled
 {
