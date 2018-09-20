@@ -1,9 +1,0 @@
-include:
-- .well-known
-
-exclude:
-- src/*
-- package.json
-- package-lock.json
-- postcss.config.js
-- webpack.config.js
