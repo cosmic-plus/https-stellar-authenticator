@@ -3,7 +3,7 @@
 * Website: https://stellar-authenticator.org
 * Sources: https://github.com/cosmic-plus/webapp-stellar-authenticator
 * Build: https://github.com/cosmic-plus/https-stellar-authenticator
-* Roadmap: https://github.com/cosmic-plus/webapp-stellar-authenticator/TODO.md
+* Roadmap: https://github.com/cosmic-plus/webapp-stellar-authenticator/blob/master/TODO.md
 
 The website is served directly from the GitHub repository, thanks to CloudFlare
 CDN. More precisely, what is served is the HEAD of the master branch of the
