@@ -35,8 +35,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
   <link rel="mask-icon" href="icons/safari.svg" color="#5bbad5">
 
-  <link rel="stylesheet" type="text/css" href="authenticator.css">
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body id="body" onload="authenticator.init()">
@@ -166,9 +166,6 @@
         onclick="authenticator.signAndSend()" value="Sign &amp; Send"
       >
     </form>
-
-    <hr>
-
     <form>
       <input type="button" onclick="authenticator.closeTransaction()"
         value="Close">
@@ -359,7 +356,7 @@
   </footer>
 
   <script src="stellar-sdk.js"></script>
-  <script src="authenticator.js"></script>
+  <script src="index.js"></script>
   <script>document.getElementById("loading").style.display = "none"</script>
 </body>
 </html>
