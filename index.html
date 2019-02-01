@@ -14,19 +14,19 @@
   ">
 
   <title>Stellar Authenticator ~ Keep it safe and simple !</title>
-  <meta name="description" content="Safely create and manage your Stellar
-    accounts.">
+  <meta property="og:title"
+    content="Stellar Authenticator ~ Keep it safe and simple !">
+  <meta property="og:description" name="description"
+    content="Safely create and manage your Stellar accounts.">
+
+  <meta property="og:image"
+    content="https://stellar-authenticator.org/icons/192x192.png">
+  <meta property="og:image:height" content="192">
+  <meta property="og:image:width" content="192">
 
   <meta name="twitter:card" content="summary">
   <meta name="msapplication-config" content="browserconfig.xml">
   <meta name="msapplication-TileColor" content="#00aba9">
-
-  <meta property="og:title" content="Stellar Authenticator ~ Keep it safe and simple !">
-  <meta property="og:description" content="Safely create and manage your Stellar
-    accounts.">
-  <meta property="og:image" content="https://stellar-authenticator.org/icons/192x192.png">
-  <meta property="og:image:height" content="192">
-  <meta property="og:image:width" content="192">
 
   <link rel="shortcut icon" href="icons/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="icons/16x16.png">
@@ -143,6 +143,14 @@
     <h2>Transaction</h2>
     <p id="cosmiclink_description"></p>
 
+    <form id="validation">
+      <input id="signingButton" type="button"
+        onclick="authenticator.signAndSend()" value="Sign &amp; Send"
+      >
+      <input type="button" onclick="authenticator.closeTransaction()"
+        value="Close">
+    </form>
+
     <hr>
 
     <form id="uriViewer">
@@ -157,18 +165,6 @@
       <h3>Transaction XDR</h3>
       <textarea name="xdr" placeholder="Computing..." rows="3" readonly
         onclick="authenticator.copyContent(this)"></textarea>
-    </form>
-
-    <hr>
-
-    <form>
-      <input id="signingButton" type="button"
-        onclick="authenticator.signAndSend()" value="Sign &amp; Send"
-      >
-    </form>
-    <form>
-      <input type="button" onclick="authenticator.closeTransaction()"
-        value="Close">
     </form>
 
   </div>

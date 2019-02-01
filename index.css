@@ -644,6 +644,13 @@ main .page {
           filter: blur(1px);
 }
 
+/* Transaction description */
+
+#validation
+{
+  margin: 2em auto;
+}
+
 /* About page */
 
 #about ul
