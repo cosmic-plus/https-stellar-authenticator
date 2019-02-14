@@ -53,7 +53,7 @@
   <div id="loading" class="popup" hidden>
     <h3>Loading</h3>
   </div>
-  <script>document.getElementById("loading").style.display = "block"</script>
+  <script>document.getElementById("loading").hidden = false</script>
 
   <main hidden>
     <div id="messages">
@@ -147,8 +147,8 @@
       <input id="signingButton" type="button"
         onclick="authenticator.signAndSend()" value="Sign &amp; Send"
       >
-      <input type="button" onclick="authenticator.closeTransaction()"
-        value="Close">
+      <input id="closeButton" type="button"
+        onclick="authenticator.closeTransaction()" value="Close">
     </form>
 
     <hr>
@@ -353,6 +353,6 @@
 
   <script src="stellar-sdk.js"></script>
   <script src="index.js"></script>
-  <script>document.getElementById("loading").style.display = "none"</script>
+  <script>document.getElementById("loading").hidden = true</script>
 </body>
 </html>
