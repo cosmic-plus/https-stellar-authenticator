@@ -594,15 +594,28 @@ noscript, main {
 
 footer {
   position: absolute;
-  bottom: 0.5em;
+  bottom: 0;
   width: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 0.9em;
+  height: 3em;
+  border-top: solid 1px transparent;
   text-align: center;
-  color: darkgrey;
+  white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden; }
+  footer p {
+    line-height: 1.5em;
+    margin: 0 0.75em;
+    color: #666666; }
+  footer a {
+    display: inline-block;
+    margin: 0.25em 0.75em 0 0.75em; }
+    footer a svg {
+      height: 2.5em;
+      fill: #cccccc;
+      -webkit-transition: fill 0.2s ease;
+      transition: fill 0.2s ease; }
+    footer a:hover svg {
+      fill: #666666; }
 
 /* Generic elements */
 h1 {
@@ -796,30 +809,3 @@ header select {
   height: 100%;
   background: black;
   background: rgba(0, 0, 0, 0.1); }
-
-/* Footer elements */
-footer p {
-  position: relative;
-  z-index: -1;
-  margin: 0.25em; }
-
-/*** Social icons ***/
-#social {
-  white-space: nowrap; }
-  #social a {
-    display: inline-block; }
-  #social svg {
-    width: 3em;
-    height: 2.5em;
-    margin: 0 0.5em;
-    border-radius: 25%;
-    background: white;
-    fill: grey;
-    box-shadow: 0.1em 0.1em 0.3em darkgrey;
-    -webkit-transition: all 0.2s ease;
-    transition: all 0.2s ease; }
-  #social a:hover svg {
-    background: lightblue;
-    fill: dimgrey;
-    box-shadow: 0.1em 0.1em 0.3em dimgrey;
-    cursor: pointer; }
