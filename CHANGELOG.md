@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.13.13 - 2019-04-19
+
+### Changed
+
+- Update [cosmic-lib] to 1.3.0.
+
 ## 0.13.12 - 2019-04-12
 
 ### Changed
