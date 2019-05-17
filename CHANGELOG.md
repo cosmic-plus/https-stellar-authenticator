@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.13.14 - 2019-05-17
+
+### Changed
+
+- Update [cosmic-lib] to 1.4.1.
+- Improve compliance with the [PWA] standard.
+- Improve loading time.
+
 ## 0.13.13 - 2019-04-19
 
 ### Changed
@@ -72,3 +80,4 @@ history](https://github.com/cosmic-plus/webapp-stellar-authenticator/commits/mas
 
 [cosmic-lib]: https://github.com/cosmic-plus/node-cosmic-lib/blob/master/CHANGELOG.md
 [stellar-sdk]: https://github.com/stellar/js-stellar-sdk/blob/master/CHANGELOG.md
+[pwa]: https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Introduction

@@ -310,7 +310,6 @@ template {
   border-top: 0.1em solid transparent;
   border-bottom: 0.1em solid #F0F0F0;
   padding: 0 0.1em;
-  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease; }
 
 .cosmiclib_clickable:hover {
@@ -407,24 +406,12 @@ template {
   vertical-align: middle;
   border-radius: 100%;
   background-color: grey;
-  -webkit-animation: animate 1.0s infinite ease-in-out;
   animation: animate 1.0s infinite ease-in-out; }
-
-@-webkit-keyframes animate {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0); }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 0; } }
 
 @keyframes animate {
   0% {
-    -webkit-transform: scale(0);
     transform: scale(0); }
   100% {
-    -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 0; } }
 
@@ -475,7 +462,6 @@ label {
   margin: 0.2em 0;
   padding: 0.2em;
   overflow: hidden;
-  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease; }
 
 textarea,
@@ -612,7 +598,6 @@ footer {
     footer a svg {
       height: 2.5em;
       fill: #cccccc;
-      -webkit-transition: fill 0.2s ease;
       transition: fill 0.2s ease; }
     footer a:hover svg {
       fill: #666666; }
@@ -638,7 +623,6 @@ hr {
   clear: both;
   margin: 0.80em;
   border: 0;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), lightgrey, rgba(0, 0, 0, 0));
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0), lightgrey, rgba(0, 0, 0, 0)); }
 
 a {
@@ -665,8 +649,7 @@ main .page {
   color: mediumseagreen; }
 
 .blur {
-  -webkit-filter: blur(1px);
-          filter: blur(1px); }
+  filter: blur(1px); }
 
 /* Transaction description */
 #validation {
@@ -755,9 +738,7 @@ header select {
 #copied {
   position: absolute;
   display: inline-block;
-  -webkit-transform: translate(-4.1em, 0.29em);
-      -ms-transform: translate(-4.1em, 0.29em);
-          transform: translate(-4.1em, 0.29em);
+  transform: translate(-4.1em, 0.29em);
   box-sizing: border-box;
   width: 4em;
   max-height: 1.5em;
@@ -767,7 +748,6 @@ header select {
   padding: 0.12em 0.5em;
   font-weight: bold;
   color: mediumseagreen;
-  -webkit-transition: opacity 0.2s ease;
   transition: opacity 0.2s ease; }
 
 /*** Pop-up and message boxes ***/
@@ -782,9 +762,7 @@ header select {
   overflow: auto;
   bottom: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, 50%);
-      -ms-transform: translate(-50%, 50%);
-          transform: translate(-50%, 50%);
+  transform: translate(-50%, 50%);
   border: 0.1em solid darkgrey;
   border-radius: 0.2em;
   box-shadow: 0.1em 0.1em 0.2em darkslategrey;
