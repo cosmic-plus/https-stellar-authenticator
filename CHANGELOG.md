@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.14.0 - 2019-06-08
+
+### Changed
+
+- Update [cosmic-lib] to 1.5.0. (Protocol 11 support)
+
 ## 0.13.14 - 2019-05-17
 
 ### Changed

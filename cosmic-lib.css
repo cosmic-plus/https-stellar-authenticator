@@ -4,7 +4,6 @@
   border-top: 0.1em solid transparent;
   border-bottom: 0.1em solid #F0F0F0;
   padding: 0 0.1em;
-  -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease; }
 
 .cosmiclib_clickable:hover {
@@ -101,23 +100,11 @@
   vertical-align: middle;
   border-radius: 100%;
   background-color: grey;
-  -webkit-animation: animate 1.0s infinite ease-in-out;
   animation: animate 1.0s infinite ease-in-out; }
-
-@-webkit-keyframes animate {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0); }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    opacity: 0; } }
 
 @keyframes animate {
   0% {
-    -webkit-transform: scale(0);
     transform: scale(0); }
   100% {
-    -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 0; } }
