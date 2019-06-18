@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.14.1 - 2019-06-18
+
+### Changed
+
+- Update [cosmic-lib] to 1.5.1.
+- Automatically reload the application once an update get installed.
+
 ## 0.14.0 - 2019-06-08
 
 ### Changed
