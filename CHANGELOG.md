@@ -2,11 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.14.2 - 2019-07-27
+
+### Changed
+
+- Improve display on smallest and biggest screens.
+- Automate release procedure.
+
 ## 0.14.1 - 2019-06-18
 
 ### Changed
 
-- Update [cosmic-lib] to 1.5.1.
+- Update [cosmic-lib] to 1.5.1. (Security fix)
 - Automatically reload the application once an update get installed.
 
 ## 0.14.0 - 2019-06-08
