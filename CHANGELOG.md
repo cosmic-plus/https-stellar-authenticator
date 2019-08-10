@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.0 - 2019-08-10
+
+**Note:** This major release doesn't contain any breaking change. The version
+bump only means that this software is public and stable.
+
+### Added
+
+- Add SEP-0007 `pay` support.
+
 ## 0.14.2 - 2019-07-27
 
 ### Changed
