@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.0 - 2019-08-31
+
+### Changed
+
+- Security: strengthen Content-Security-Policy. `form-action 'none'` has been
+  added.
+- Api: Update [cosmic-lib] to 1.8.0.
+
 ## 1.0.1 - 2019-08-11
 
 ### Fixed
