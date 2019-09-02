@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.1.1 - 2019-09-02
+
+### Fixed
+
+- Api: Update [cosmic-lib] to 1.8.1. (fix regression)
+
 ## 1.1.0 - 2019-08-31
 
 ### Changed
