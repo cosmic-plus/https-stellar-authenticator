@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.2.0 - 2019-09-07
+
+### Changed
+
+- API: Upgrade [cosmic-lib] to 2.x. (protocol changes)
+
+### Fixed
+
+- Meta: Fix a rare application upgrade bug. Bypass browser cache when fetching
+  latest release to prevent possible unconsistent upgrade.
+
 ## 1.1.1 - 2019-09-02
 
 ### Fixed
