@@ -321,6 +321,13 @@
       <input type="button" value="Remove user" onclick="authenticator.removeUser()">
     </div>
 
+    <h3 onclick="authenticator.showSetting(this)" id="extraSettings" hidden>
+      Extra
+    </h3>
+    <div>
+      <input id="setSep7Handler" type="button" value="Register as web+stellar links handler">
+    </div>
+
     <h3 onclick="authenticator.logout()">Log Out</h3>
     <span>You are automatically logged out when you close the last Stellar
     Authenticator tab</span>
