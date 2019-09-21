@@ -304,6 +304,46 @@ template {
 [hidden] {
   display: none; }
 
+/* Screen-size Handling */
+@-ms-viewport {
+  width: device-width; }
+
+@media screen and (min-width: 46em), screen and (min-height: 36.5em) {
+  html {
+    font-size: 1.1em; } }
+
+@media screen and (min-width: 62em), screen and (min-height: 48em) {
+  html {
+    font-size: 1.2em; } }
+
+@media screen and (min-width: 83em), screen and (min-height: 64em) {
+  html {
+    font-size: 1.3em; } }
+
+@media (min-width: 118em), screen and (min-height: 85em) {
+  html {
+    font-size: 1.5em; } }
+
+@media (min-width: 158em) {
+  html {
+    font-size: 1.8em; } }
+
+/* Universal rules */
+[hidden] {
+  display: none !important; }
+
+html {
+  box-sizing: border-box;
+  vertical-align: middle; }
+  html * {
+    max-height: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  vertical-align: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
 /* cosmiclib styling */
 .cosmiclib_clickable {
   display: inline-block;
@@ -415,38 +455,6 @@ template {
     transform: scale(1);
     opacity: 0; } }
 
-/* Screen-size handling */
-@-ms-viewport {
-  width: device-width; }
-
-@media screen and (min-width: 46em), screen and (min-height: 36.5em) {
-  html {
-    font-size: 1.1em; } }
-
-@media screen and (min-width: 62em), screen and (min-height: 48em) {
-  html {
-    font-size: 1.2em; } }
-
-@media screen and (min-width: 83em), screen and (min-height: 64em) {
-  html {
-    font-size: 1.3em; } }
-
-@media (min-width: 118em), screen and (min-height: 85em) {
-  html {
-    font-size: 1.5em; } }
-
-@media (min-width: 158em) {
-  html {
-    font-size: 1.8em; } }
-
-/* Universal rules */
-[hidden] {
-  display: none !important; }
-
-*, *:before, *:after {
-  box-sizing: inherit;
-  vertical-align: inherit; }
-
 /* Form styling */
 form {
   position: relative;
@@ -552,15 +560,12 @@ input[readonly] {
 /* Page layout */
 html {
   min-height: 100%;
-  box-sizing: border-box;
   position: relative;
   overflow-y: scroll; }
-  html * {
-    max-height: 100%; }
 
 body {
   height: 100%;
-  padding: 3.5em 0 4em 0;
+  padding: 3.5em 0 3.5em 0;
   background: aliceblue;
   font-family: Arial, sans-serif; }
 
@@ -587,23 +592,25 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 3em;
-  border-top: solid 1px transparent;
+  height: 3.5em;
+  padding: 0 1%;
   text-align: center;
   white-space: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden; }
+  overflow: hidden; }
   footer p {
     line-height: 1.5em;
     margin: 0 0.75em;
     color: #666666; }
   footer a {
     display: inline-block;
-    margin: 0.25em 0.75em 0 0.75em; }
+    margin: 0.75em 1vw; }
     footer a svg {
-      height: 2.5em;
+      height: 2em;
+      max-width: 9vw;
       fill: #cccccc;
       transition: fill 0.2s ease; }
+    footer a[href="https://cosmic.plus"] svg {
+      fill: #607492; }
     footer a:hover svg {
       fill: #666666; }
 
