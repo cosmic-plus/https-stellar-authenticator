@@ -644,6 +644,9 @@ a {
     text-decoration: underline;
     cursor: pointer; }
 
+p {
+  vertical-align: baseline; }
+
 /* Form elements */
 /* Generic classes */
 .page {
