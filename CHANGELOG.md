@@ -14,6 +14,19 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 backward-compatibility and can be updated to without risk of breakage. For major
 releases, please check this changelog before upgrading.
 
+## 1.5.0 - 2019-10-26
+
+### Added
+
+- API: Add protocol 12 compatibility. (see [protocol 12
+  update](https://www.stellar.org/developers/blog/horizon-v0-22-0-released-protocol-12-support/#about-protocol-12))
+
+## 1.4.1 - 2019-09-28
+
+### Fixed
+
+- UI: Fix text alignement. (regression introduced with previous update)
+
 ## 1.4.0 - 2019-09-21
 
 ### Changed
