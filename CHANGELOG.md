@@ -14,6 +14,13 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 backward-compatibility and can be updated to without risk of breakage. For major
 releases, please check this changelog before upgrading.
 
+## 1.6.0 - 2019-11-30
+
+### Added
+
+- UI: Add transaction validation report. This includes explanations of what went
+  wrong in case of error.
+
 ## 1.5.1 - 2019-11-09
 
 ### Fixed
