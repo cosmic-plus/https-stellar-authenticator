@@ -14,6 +14,13 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 backward-compatibility and can be updated to without risk of breakage. For major
 releases, please check this changelog before upgrading.
 
+## 1.6.1 - 2019-12-02
+
+### Fixed
+
+- Logic: Fix transaction error handling. In some cases the error was not
+  properly displayed. (Thanks [u/Eth_Man](https://reddit.com/u/Eth_Man))
+
 ## 1.6.0 - 2019-11-30
 
 ### Added
