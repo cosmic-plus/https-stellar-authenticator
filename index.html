@@ -72,9 +72,9 @@
     </p>
 
     <p>
-      You are a few click away from your Stellar account. All you need to do is
-      to pick an username and a password. Please choose something that you will
-      remember for sure. If you loose them, you won't be able to access your
+      You are a few clicks away from your Stellar account. All you need to do is
+      to pick a username and a password. Please choose something that you will
+      remember for sure. If you lose them, you won't be able to access your
       accounts anymore. There's no password recovery mechanism as nobody else
       will know about your username/password.
     </p>
@@ -168,114 +168,6 @@
 
   </div>
 
-
-  <div id="about" class="page">
-    <h2> About </h2>
-
-    <h3> History </h3>
-
-    <p>I initially came to Stellar looking for a solution for organising a
-    small ICO (a fundraise based on the blockchain). I wanted to offer a way
-    for donators to securely & easily manage their wallet by themself. I was
-    not satisfied by available solution security-wise, as exposing donators to
-    the possibility of a wallet crack was not an option. I've been offered the
-    means to go ahead and implement my own solution, thanks to Stellar
-    Foundation kind support. </p>
-
-    <h3> What is getting solved </h3>
-
-    <p> I've created Stellar Authenticator and cosmic links in an effort to
-    bring additional security into the Stellar ecosystem. Precisely, I aimed to
-    offer a solution to the following problems : </p>
-    <ul>
-      <li>Most Stellar services implement their own way to create/secure seed
-      wich's redundant. This energy could be spent developping their own
-      specificity instead.</li>
-
-      <li>Most Stellar wallets/exchanges don't allow users to easily sign
-      transaction emitted by external sources.</li>
-
-      <li>User experience may be tedious for non-technical beings. (Although
-      better than most blockchain, I would say)</li>
-    </ul>
-
-    <h3> Solution </h3>
-
-    <p>I started looking at a solution that would achieve those goals :</p>
-
-    <ul>
-      <li> Stellar services would be offered a way to rely on already
-      implemented tools to login/sign transaction. Coders could spend more
-      energy on implementing something new. </li>
-
-      <li> Stellar wallets would be offered a way to serve as login/signing
-      tools for thoses services. </li>
-
-      <li> New users would be offered a platform that allow them to secure
-      their founds without headaches. </li>
-    </ul>
-
-    <h3> Design </h3>
-    <p> After talking with other community members, the solution came up of
-    expressing Stellar transaction requests as URL queries. That would be the
-    common language between all services/wallets. The
-    <a href="https://cosmic.link" target="_blank" rel="noopener">cosmic.link</a>
-    website would serve as a secure relay when direct connection between the
-    service and the wallet would not be possible. In this scheme, Stellar
-    Authenticator offer a way to create accounts and securely store the private
-    keys. It allows to sign transactions so that you don't need to give away
-    thoses keys. By narrowing its purpose solely on this task, I can keep the
-    codebase size under control. Then, this is easier to audit it and to keep
-    it secure and well-functioning. </p>
-
-    <h3> Future </h3>
-    <p> Nowaday, this design is fully implemented and functional. This is still
-    in the beta phase, though. This means that it's stable enough to be used
-    and the core features have been tested enough. However, some additional
-    features are still to be implemented before I can say to job is done.
-    Namely cloud syncing, hardware wallets support, encrypted paper wallet, a
-    better support for multi-signatures accounts and translation into other
-    languages. </p>
-
-    <h3> Source Code </h3>
-    <p>
-      The Gihub repository is at <a target="_blank" rel="noopener"
-      href="https://github.com/MisterTicot/stellar-authenticator">
-      https://github.com/MisterTicot/stellar-authenticator</a>. This website is
-      served directly from there through CloudFlare.
-    </p>
-
-    <h3> Licence </h3>
-    <p>Stellar Authenticator is under <a target="_blank" rel="noopener"
-      href="https://en.wikipedia.org/wiki/MIT_License">MIT Licence</a>. This is
-    a free software licence that allows you to read, copy, edit and distribute
-    the code with or without your changes. The development costs are supported
-    by the Stellar Foundation and the donators.</p>
-
-    <h3> Contact </h3>
-    <p>
-      If you wish to contribute, ask a question or make a suggestion, you're
-      welcome to do so in the <a target="_blank" rel="noopener"
-      href="https://galactictalk.org/d/1621-release-stellar-authenticator-beta-1">
-      dedicated thread at Galactic Talk</a>. If you prefer to contact me
-      directly you can do so at <a
-      href="mailto:author@stellar-authenticator.org">
-      author@stellar-authenticator.org</a>.
-    </p>
-
-    <h3> Donate </h3>
-    <p> Tips are welcome at
-      <a onclick="authenticator.pushQuery('?payment&amount=20&destination=donate*stellar-authenticator.org')">
-        donate*stellar-authenticator.org</a>.
-    </p>
-
-    <hr>
-
-    <form>
-      <input type="button" onclick="authenticator.popQuery()" value="Back">
-    </form>
-  </div>
-
   <noscript>
     <h2>Please enable Javascript :)</h2>
 
@@ -362,9 +254,6 @@
       </a>
       <a title="Contact by Email" href="mailto:mister.ticot@cosmic.plus">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"/></svg>
-      </a>
-      <a id="aboutIcon" title="About" onclick="authenticator.pushQuery('?about')">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"/></svg>
       </a>
     </div>
   </footer>
