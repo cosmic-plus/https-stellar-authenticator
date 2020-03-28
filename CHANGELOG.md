@@ -14,6 +14,12 @@ Versioning](https://semver.org/spec/v2.0.0.html)**. Version syntax is
 backward-compatibility and can be updated to without risk of breakage. For major
 releases, please check this changelog before upgrading.
 
+## 1.9.0 - 2020-03-28
+
+### Changed
+
+- Logic: Update cosmic-lib to 2.7.0 (SEP29 support).
+
 ## 1.8.0 - 2020-01-25
 
 ### Changed
